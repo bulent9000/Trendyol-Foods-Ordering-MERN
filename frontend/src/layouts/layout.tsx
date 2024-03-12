@@ -1,3 +1,4 @@
+import Burger from "@/components/Burger";
 import Header from "@/components/Header";
 
 type Props = {
@@ -8,6 +9,7 @@ const Layout = ({ children }: Props) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
+      <Burger/>
       <div className="container mx-auto flex-1 py-10">{children}</div>
     </div>
   );
