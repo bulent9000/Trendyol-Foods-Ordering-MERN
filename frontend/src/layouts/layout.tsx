@@ -1,4 +1,5 @@
 import Burger from "@/components/Burger";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
 type Props = {
@@ -11,6 +12,7 @@ const Layout = ({ children }: Props) => {
       <Header />
       <Burger/>
       <div className="container mx-auto flex-1 py-10">{children}</div>
+      <Footer/>
     </div>
   );
 };
