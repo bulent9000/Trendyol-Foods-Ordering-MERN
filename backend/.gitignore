@@ -1,5 +1,8 @@
 .env/
 node_modules/
+dist/
+tsconfig.json
+package.json
 
 
 
