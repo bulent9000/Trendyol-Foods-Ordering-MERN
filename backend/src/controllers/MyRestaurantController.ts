@@ -4,6 +4,22 @@ import cloudinary from "cloudinary";
 import mongoose from "mongoose";
 
 
+const getMyRestaurant=async(req:Request,res:Response)=>{
+    try {
+        const restaurant=await Restaurant.findOne({user:req.userId});
+        if(!restaurant){
+            return res.status(404).json({message:"Restaurant not found"});
+
+        }
+        res.json(restaurant);
+    } catch (error) {
+        console.log("error",error);
+        res.status(500).json({message:"Error fetch restaurant"});
+        
+    }
+}
+
+
 const createMyRestaurant=async (req:Request,res:Response)=>{
 try {
 const existingRestaurant=await Restaurant.findOne({user:req.userId});
@@ -31,5 +47,6 @@ const uploadResponse=await cloudinary.v2.uploader.upload(dataURI);
 }
 
 export default {
+    getMyRestaurant,
     createMyRestaurant,
 }
