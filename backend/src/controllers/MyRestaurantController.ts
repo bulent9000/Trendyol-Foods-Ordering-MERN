@@ -17,7 +17,7 @@ const getMyRestaurant=async(req:Request,res:Response)=>{
         res.status(500).json({message:"Error fetch restaurant"});
         
     }
-}
+} 
 
 
 const createMyRestaurant=async (req:Request,res:Response)=>{

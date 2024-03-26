@@ -7,7 +7,7 @@ import {v2 as cloudinary} from "cloudinary";
 import myRestaurantRoute from "./routes/MyRestaurantRoute";
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(()=>console.log("Database connected successfully")
 );
-
+ 
 cloudinary.config({
   cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
   api_key:process.env.CLOUDINARY_API_KEY,
