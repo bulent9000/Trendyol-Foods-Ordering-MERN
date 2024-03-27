@@ -51,7 +51,7 @@ const imageUrl=await uploadImage(req.file as Express.Multer.File);
 }
 
 
-const updateMyRestaurant=async(req:Request, res:Response){
+const updateMyRestaurant=async(req:Request, res:Response)=>{
     try {
        const restaurant=await Restaurant.findOne({user:req.userId});
        if(!restaurant){
