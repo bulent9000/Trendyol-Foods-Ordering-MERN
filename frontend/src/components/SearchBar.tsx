@@ -5,6 +5,7 @@ import { Form, FormControl, FormField, FormItem } from "./ui/form";
 import { Search } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   searchQuery: z.string({
@@ -18,26 +19,36 @@ type Props = {
   onSubmit: (formData: SearchForm) => void;
   placeHolder: string;
   onReset?: () => void;
+  searchQuery: string;
 };
 
-const SearchBar = ({ onSubmit, onReset, placeHolder }: Props) => {
+const SearchBar = ({ onSubmit, onReset, placeHolder, searchQuery }: Props) => {
   //This just ties in our validation schema to our form.
   const form = useForm<SearchForm>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      searchQuery,
+    },
   });
-  const handleReset=()=>{
+  useEffect(() => {
+    form.reset({ searchQuery });
+  }, [form, searchQuery]);
+  const handleReset = () => {
     form.reset({
-        searchQuery:"",
-
+      searchQuery: "",
     });
-    if(onReset){
-
-        onReset();
+    if (onReset) {
+      onReset();
     }
-  }
+  };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className={`flex items-center flex-1 gap-3 justify-between flex-row border-2 rounded-full p-3 mx-5 ${form.formState.errors.searchQuery && "border-red-500"}`}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={`flex items-center flex-1 gap-3 justify-between flex-row border-2 rounded-full p-3 ${
+          form.formState.errors.searchQuery && "border-red-500"
+        }`}
+      >
         <Search
           strokeWidth={2.5}
           size={30}
@@ -59,15 +70,18 @@ const SearchBar = ({ onSubmit, onReset, placeHolder }: Props) => {
           )}
         />
 
-        {form.formState.isDirty && (
           <Button
-          onClick={handleReset}
+            onClick={handleReset}
             type="button"
             variant="outline"
             className="rounded-full"
-          >Clear</Button>
-        )}
-        <Button type="submit" className="rounded-full bg-orange-500">Search</Button>
+          >
+            Reset
+          </Button>
+        
+        <Button type="submit" className="rounded-full bg-orange-500">
+          Search
+        </Button>
       </form>
     </Form>
   );
