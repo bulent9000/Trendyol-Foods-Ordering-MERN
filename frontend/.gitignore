@@ -8,6 +8,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+CHANGELOG.md*
+index.d.ts*
+tsconfig.json*
+nodetouch.cmd
+semver
+nopt.ts1
+
 node_modules
 dist
 dist-ssr
