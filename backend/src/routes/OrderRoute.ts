@@ -1,5 +1,4 @@
 import express from "express";
-
 import { jwtCheck, jwtParse } from "../middleware/auth";
 import OrderController from "../controllers/OrderController";
 
@@ -11,3 +10,5 @@ router.post(
   jwtParse,
   OrderController.createCheckoutSession
 );
+
+export default router;
