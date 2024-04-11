@@ -13,6 +13,11 @@ const upload = multer({
     fileSize: 5 * 1024 * 1024,
   },
 });
+
+
+router.get("/order",jwtCheck,jwtParse,MyRestaurantController.getMyRestaurantOrder)
+
+
 //get /api/my/restaurant
 router.get("/",jwtCheck,jwtParse,MyRestaurantController.getMyRestaurant)
  
