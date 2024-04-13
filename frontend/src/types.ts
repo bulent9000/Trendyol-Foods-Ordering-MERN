@@ -62,3 +62,8 @@ export type RestaurantSearchResponse = {
     pages: number;
   };
 };
+
+export type UpdateOrderStatusRequest = {
+  orderId: string;
+  status: string;
+};
